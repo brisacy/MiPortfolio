@@ -138,28 +138,26 @@ const scrollReveal = () => {
       const elementTop = element.getBoundingClientRect().top;
       const elementVisible = 150;
       if (elementTop < window.innerHeight - elementVisible) {
-          element.classList.add('visible');
+          element.classList.add('visible'); 
       }
   });
 };
 
+(function () {
+    emailjs.init("l74e188hwonndyMa0");
+})();
 
-function sendWhatsAppMessage(event) {
-    event.preventDefault(); // Evita que se recargue la página
-            
-    const name = document.getElementById("name").value;
-    const email = document.getElementById("email").value;
-    const message = document.getElementById("message").value;
+document.getElementById('contact-form').addEventListener('submit', function (event) {
+    event.preventDefault();
 
-    const phoneNumber = "5492212201898"; 
+    emailjs.sendForm('service_6ol8ytw', 'template_zeq9vik', this)
+        .then(function () {
+            console.log('Correo enviado exitosamente');
+        }, function (error) {
+            console.log('Error:', error);
+        });
+});
 
-    const text = `Hola, recibí un mensaje desde el formulario de contacto:
-    Nombre: ${name}
-    Email: ${email}
-    Mensaje: ${message}`;
-    const whatsappURL = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(text)}`;
-    window.open(whatsappURL, "_blank");
-}
 
 
 window.addEventListener('scroll', scrollReveal);
