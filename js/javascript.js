@@ -191,15 +191,4 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Prevent body scroll when menu is open
-    function toggleBodyScroll() {
-        if (navLinks.classList.contains('active')) {
-            document.body.style.overflow = 'hidden';
-        } else {
-            document.body.style.overflow = 'auto';
-        }
-    }
-
-    burger.addEventListener('click', toggleBodyScroll);
-    closeMenu.addEventListener('click', toggleBodyScroll);
 });
