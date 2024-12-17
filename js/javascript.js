@@ -162,3 +162,44 @@ document.getElementById("contact-form").addEventListener("submit", function (eve
             submitButton.disabled = false;
         });
 });
+
+document.addEventListener('DOMContentLoaded', () => {
+    const burger = document.querySelector('.burger');
+    const navLinks = document.querySelector('.nav-links');
+    const menuLinks = document.querySelectorAll('.nav-link');
+    const closeMenu = document.querySelector('.close-menu');
+
+    // Toggle mobile menu
+    burger.addEventListener('click', () => {
+        burger.classList.toggle('active');
+        navLinks.classList.toggle('active');
+    });
+
+    // Close menu when a link is clicked
+    menuLinks.forEach(link => {
+        link.addEventListener('click', () => {
+            burger.classList.remove('active');
+            navLinks.classList.remove('active');
+        });
+    });
+
+    // Close menu when close icon is clicked
+    if (closeMenu) {
+        closeMenu.addEventListener('click', () => {
+            burger.classList.remove('active');
+            navLinks.classList.remove('active');
+        });
+    }
+
+    // Prevent body scroll when menu is open
+    function toggleBodyScroll() {
+        if (navLinks.classList.contains('active')) {
+            document.body.style.overflow = 'hidden';
+        } else {
+            document.body.style.overflow = 'auto';
+        }
+    }
+
+    burger.addEventListener('click', toggleBodyScroll);
+    closeMenu.addEventListener('click', toggleBodyScroll);
+});
