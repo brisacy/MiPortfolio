@@ -154,9 +154,24 @@ document.getElementById("contact-form").addEventListener("submit", function (eve
 
     emailjs.sendForm(serviceID, templateID, this)
         .then(() => {
-            alert("Mensaje enviado exitosamente.");
+            Swal.fire({
+                icon: 'success',
+                title: 'Mensaje enviado!',
+                text: 'Tu mensaje ha sido enviado exitosamente.',
+                confirmButtonColor: '#3498db'
+            });
+            // Clear form fields
+            event.target.reset();
         }, (err) => {
-            alert("Error al enviar el mensaje: " + JSON.stringify(err));
+            // Use SweetAlert for error handling as well
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Hubo un error al enviar el mensaje.',
+                confirmButtonColor: '#d33',
+                titleText: 'Oops...',
+                textColor: '#333'
+            });
         })
         .finally(() => {
             submitButton.disabled = false;
@@ -192,3 +207,5 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
 });
+
+
